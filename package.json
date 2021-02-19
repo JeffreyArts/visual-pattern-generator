@@ -1,0 +1,27 @@
+{
+  "name": "g3n35y5",
+  "version": "0.0.1",
+  "description": "A generative system for illustrations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JeffreyArts/G3N35Y5.git"
+  },
+  "author": "Jeffrey Arts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeffreyArts/G3N35Y5/issues"
+  },
+  "homepage": "https://github.com/JeffreyArts/G3N35Y5#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  },
+  "dependencies": {
+    "jsdom": "^16.4.0",
+    "lodash": "^4.17.20",
+    "shuffle-seed": "^1.1.6"
+  }
+}
