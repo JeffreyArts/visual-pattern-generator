@@ -17,11 +17,12 @@
   },
   "homepage": "https://github.com/JeffreyArts/G3N35Y5#readme",
   "devDependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "svgdom": "^0.1.8"
   },
   "dependencies": {
-    "jsdom": "^16.4.0",
     "lodash": "^4.17.20",
-    "shuffle-seed": "^1.1.6"
+    "shuffle-seed": "^1.1.6",
+    "svg.js": "^2.7.1"
   }
 }

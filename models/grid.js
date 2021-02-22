@@ -1,9 +1,4 @@
-
 const _ = require("lodash");
-const loop2DArray = require("../utilities/loop2DArray");
-const Svg = require("../models/svg");
-// const Polyline = requireShared("models/polyline");
-// const Point = requireShared("models/point");
 
 // First index represents Y column
 // Second index represents X column
@@ -35,36 +30,18 @@ const Grid = {
         }
         return result.array;
     },
-    draw: (grid, svg) => {
-        // console.log('Draw grid:', grid);
-        Grid.loop(grid, (x,y) => {
-            style = 'gridPoint';
-
-            posX = x; //grid.margin
-            posY = y; //grid.margin
-
-            Svg.addCircle(svg, {
-                style: {
-                    "fill": "#eee"
-                },
-                cx: posX,
-                cy: posY,
-                r:.1,
-            });
-        })
-    },
     loop: (grid, fn) => {
-        for (var posY = 1; posY <= grid.length; posY++) {
-            for (var posX = 1; posX <= grid[0].length; posX++) {
+        for (var posY = 0; posY < grid.length; posY++) {
+            for (var posX = 0; posX < grid[0].length; posX++) {
                 fn(posX,posY);
             }
         }
     },
     getPointValue: (x,y,grid) => {
-        if (!grid[y-1]) {
+        if (!grid[y]) {
             return null;
         }
-        return grid[y-1][x-1];
+        return grid[y][x];
     },
 //     createMap: (inputPolylines, width, height) => {
 //         var pointsCollection = inputPolylines;

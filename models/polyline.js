@@ -19,14 +19,29 @@ const Polyline = {
         })
         return res;
     },
+    mirror: (polylines, type, width, height) => {
+        var result = [];
+            _.each(polylines, polyline => {
+                var newPolyline = [];
+
+                _.each(polyline, cord => {
+                    newPolyline.push({
+                        x: type == 'x' ? -cord.x + width - 1 : cord.x,
+                        y: type == 'y' ? -cord.y + height - 1 : cord.y
+                    });
+                });
+                result.push(newPolyline);
+            });
+        return result;
+    },
     removeDuplicates: polylines => {
-        _.remove(polylines, polyline => polyline.cords.length<=1);
+        _.remove(polylines, polyline => polyline.length<=1);
         var newPolylines = [];
         _.each(polylines, polyline => {
             var found = false;
             _.each(newPolylines, newPolyline => {
-                if ((JSON.stringify(polyline.cords) == JSON.stringify(newPolyline.cords)) ||
-                    (JSON.stringify(polyline.cords) == JSON.stringify(_.reverse(newPolyline.cords)))
+                if ((JSON.stringify(polyline) == JSON.stringify(newPolyline)) ||
+                    (JSON.stringify(polyline) == JSON.stringify(_.reverse(newPolyline)))
                     ) {
                     found = true
                     return

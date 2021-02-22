@@ -1,5 +1,6 @@
 {
     "mirrorX": 0,
     "mirrorY": 0,
+    "mask": null,
     "drawConnectLines" : true
 }
