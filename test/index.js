@@ -50,32 +50,31 @@ app.get('/', (req, res) => {
 
     var input = {
         seed: (Math.round(Math.random()*10000)),
-        width: 10,
-        height: 10,
+        width: 9,
+        height: 9,
         symbols: symbols,
         algorithm: {
-            type: "default",
-            mirrorX: 1,
+            type: "polylines",
+            mirrorX: 0,
             mirrorY: 1,
             drawConnectLines: true,
             mask: [
-                [ 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
-                [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                [ 1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-                [ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-                [ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-                [ 1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-                [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                [ 1, 1, 1, 1, 0, 0, 1, 1, 1, 1]
+                [ 1,0,0,1,1,0,0,0,0],
+                [ 0,0,0,0,1,1,0,0,0],
+                [ 0,0,0,0,0,1,1,0,0],
+                [ 0,0,0,0,0,0,1,0,0],
+                [ 0,0,0,0,0,0,0,0,0],
+                [ 0,0,0,0,0,0,1,0,0],
+                [ 0,0,0,0,0,1,1,0,0],
+                [ 0,0,0,0,1,1,0,0,0],
+                [ 1,0,0,1,1,0,0,0,0],
             ],
         }
     };
 
 
     const canvas = SVG(document.documentElement)
-
+    console.log(input);
     const result = vpGenerator(input);
 
     _.each(result.polylines, polyline => {
