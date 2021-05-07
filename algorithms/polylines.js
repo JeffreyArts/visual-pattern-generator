@@ -202,8 +202,7 @@ module.exports = (input) => {
             (canvasGrid[0].length == Math.round(mask[0].length/2) && !mirrorX) &&
             (canvasGrid.length != mask.length && canvasGrid[0].length != mask[0].length)
         ) {
-            console.error("Mask size does not equal canvas grid size", `width: ${canvasGrid[0].length}, height: ${canvasGrid.length}`)
-            console.log(canvasGrid)
+            console.warn("Mask size does not equal canvas grid size", `width: ${canvasGrid[0].length}, height: ${canvasGrid.length}`);
         }
 
         canvasGrid = newCanvas;

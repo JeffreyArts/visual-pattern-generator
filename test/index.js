@@ -72,10 +72,8 @@ app.get('/', (req, res) => {
         }
     };
 
-
     const canvas = SVG(document.documentElement)
-    console.log(input);
-    const result = vpGenerator(input);
+    const result = vpGenerator.Algorithm(input);
 
     _.each(result.polylines, polyline => {
         var polyline = _.map(polyline, cord => {
