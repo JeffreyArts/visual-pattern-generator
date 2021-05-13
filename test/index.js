@@ -3,7 +3,7 @@ const _         = require('lodash')
 const express   = require('express')
 const { createSVGWindow } = require('svgdom')
 
-const vpGenerator   = require('../')
+const {Algorithm, Polyline}   = require('../')
 const symbolModel   = require('../data-models/symbol')
 const app           = express();
 const port          = 3000;
@@ -55,27 +55,32 @@ app.get('/', (req, res) => {
         symbols: symbols,
         algorithm: {
             type: "polylines",
-            mirrorX: 0,
+            startPoint: {x:0, y:0},
+            mirrorX: 1,
             mirrorY: 1,
             drawConnectLines: true,
             mask: [
-                [ 1,0,0,1,1,0,0,0,0],
-                [ 0,0,0,0,1,1,0,0,0],
-                [ 0,0,0,0,0,1,1,0,0],
-                [ 0,0,0,0,0,0,1,0,0],
+                [ 0,0,0,1,1,1,0,0,0],
+                [ 0,0,0,0,1,0,0,0,0],
+                [ 0,1,0,0,0,0,0,1,0],
                 [ 0,0,0,0,0,0,0,0,0],
-                [ 0,0,0,0,0,0,1,0,0],
-                [ 0,0,0,0,0,1,1,0,0],
-                [ 0,0,0,0,1,1,0,0,0],
-                [ 1,0,0,1,1,0,0,0,0],
+                [ 0,0,0,0,1,0,0,0,0],
+                [ 0,0,0,0,0,0,0,0,0],
+                [ 0,1,0,0,0,0,0,1,0],
+                [ 0,0,0,0,1,0,0,0,0],
+                [ 0,0,0,1,1,1,0,0,0],
             ],
         }
     };
 
-
     const canvas = SVG(document.documentElement)
-    console.log(input);
-    const result = vpGenerator(input);
+    const result = Algorithm(input);
+
+    // Preview map feature
+    var map = Polyline.createMap(result.polylines, input.width, input.height)
+    Polyline.mergePolylines(result.polylines, map)
+    _.each(map, row => console.log("\t",_.map(row, v => v.char).join(" ")))
+
 
     _.each(result.polylines, polyline => {
         var polyline = _.map(polyline, cord => {
