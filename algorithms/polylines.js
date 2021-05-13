@@ -170,20 +170,25 @@ module.exports = (input) => {
     const symbols = input.symbols;
     const seed = input.seed;
 
+    const startPoint        = input.algorithm.startPoint || {x:0, y:0};
     const mirrorX           = input.algorithm.mirrorX || 0;
     const mirrorY           = input.algorithm.mirrorY || 0;
     const drawConnectLines  = input.algorithm.drawConnectLines || true;
 
-    let mask                = null;
-    let canvasGrid          = Grid.init(mirrorX == 1 ? width/2 : width, mirrorY == 1 ? height/2 : height);
+    if (!input.algorithm.startPoint) {
+        startPoint.x = mirrorX != 0 ? Math.floor(width/4) : Math.floor(width/2)
+        startPoint.y = mirrorY != 0 ? Math.floor(height/4) : Math.floor(height/2)
+    }
 
+    let mask                = null;
+    let canvasGrid          = Grid.init(width, height);
     if (input.algorithm.mask) {
         mask = _.merge([],input.algorithm.mask);
     }
 
     if (!_.isNull(mask)) {
         var newCanvas = _.merge([],mask);
-        if (canvasGrid[0].length == Math.round(mask[0].length/2) && mirrorX) {
+        if (canvasGrid[0].length == Math.floor(mask[0].length/2) && mirrorX) {
             _.each(newCanvas, posY => {
                 _.remove(posY, (valueX, indexX) => {
                      return indexX > canvasGrid[0].length;
@@ -191,15 +196,15 @@ module.exports = (input) => {
             })
         }
 
-        if (canvasGrid.length == Math.round(mask.length/2) && mirrorY) {
+        if (canvasGrid.length == Math.floor(mask.length/2) && mirrorY) {
             _.remove(newCanvas, (valueY, indexY) => {
                  return indexY > canvasGrid.length;
             })
         }
 
         if (
-            (canvasGrid.length == Math.round(mask.length/2) && !mirrorY) &&
-            (canvasGrid[0].length == Math.round(mask[0].length/2) && !mirrorX) &&
+            (canvasGrid.length == Math.floor(mask.length/2) && !mirrorY) &&
+            (canvasGrid[0].length == Math.floor(mask[0].length/2) && !mirrorX) &&
             (canvasGrid.length != mask.length && canvasGrid[0].length != mask[0].length)
         ) {
             console.warn("Mask size does not equal canvas grid size", `width: ${canvasGrid[0].length}, height: ${canvasGrid.length}`);
@@ -213,10 +218,20 @@ module.exports = (input) => {
         polylines: [],
     };
 
-    generateModelLoop(result, [{
-            x: mirrorX != 0 ? Math.floor(width/4) : Math.floor(width/2),
-            y: mirrorY != 0 ? Math.floor(height/4) : Math.floor(height/2),
-        }],
+    if (mirrorY == 1){
+        canvasGrid.length = Math.ceil(canvasGrid.length/2);
+    }
+
+    
+    if (mirrorX == 1){
+        _.each(canvasGrid, row => {
+            row.length = Math.ceil(row.length/2)
+
+        })
+    }
+
+
+    generateModelLoop(result, [startPoint],
         symbols,
         canvasGrid,
         {
