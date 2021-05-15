@@ -1,5 +1,6 @@
 const _ = require("lodash")
 const shuffleSeed = require('shuffle-seed');
+const seedrandom = require('seedrandom');
 
 const Grid = require("../models/grid");
 const Polyline = require("../models/polyline");
@@ -22,6 +23,10 @@ const applyMask = (mask, polylines) => {
     return result;
 };
 
+const numerizeSeed = seed => {
+    return Math.floor(seedrandom(seed)()*1000000)
+}
+
 // Helper function to run generateModel iterively
 const generateModelLoop = (res, startCords, symbols, canvasGrid, opts) => {
     if (!opts) {
@@ -41,7 +46,7 @@ const generateModelLoop = (res, startCords, symbols, canvasGrid, opts) => {
                     })
                 }
                 opts.index++;
-                generateModelLoop(res, shuffleSeed.shuffle(generatedModel.newStartCords, opts.seed + opts.index), symbols, canvasGrid, opts);
+                generateModelLoop(res, shuffleSeed.shuffle(generatedModel.newStartCords, numerizeSeed(opts.seed) + opts.index), symbols, canvasGrid, opts);
             }
         }
     }
@@ -136,13 +141,14 @@ const generateModel = (startCord, symbols, canvasGrid, opts) => {
     if (!_.isArray(symbols)) {
         symbols = [symbols];
     }
+
     let nextSymbol = null;
 
     _.each(symbols, symbol => {
         let symbolPositions = getPositions(symbol, startCord, canvasGrid);
 
         if (symbolPositions.length > 0) {
-            nextSymbol = symbolPositions[opts.seed % symbolPositions.length];
+            nextSymbol = symbolPositions[numerizeSeed(opts.seed) % symbolPositions.length];
         }
     })
 
