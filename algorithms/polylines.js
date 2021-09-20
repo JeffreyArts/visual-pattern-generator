@@ -1,9 +1,9 @@
-const _ = require("lodash")
-const shuffleSeed = require('shuffle-seed');
-const seedrandom = require('seedrandom');
+import _            from "lodash";
+import shuffleSeed  from "shuffle-seed";
+import seedrandom   from "seedrandom";
 
-const Grid = require("../models/grid");
-const Polyline = require("../models/polyline");
+import Grid         from "./../models/grid.js";
+import Polyline     from "./../models/polyline.js";
 
 // Functions for mirroring output
 const applyMask = (mask, polylines) => {
@@ -169,8 +169,8 @@ const generateModel = (startCord, symbols, canvasGrid, opts) => {
         return null;
     }
 }
+export default (input) => {
 
-module.exports = (input) => {
     const width = input.width;
     const height = input.height;
     const symbols = input.symbols;
@@ -258,8 +258,6 @@ module.exports = (input) => {
         result.polylines = applyMask(mask, result.polylines);
     }
     result.polylines = Polyline.removeDuplicates(result.polylines);
-
-
 
     return result;
 }

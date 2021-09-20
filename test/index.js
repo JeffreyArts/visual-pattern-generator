@@ -1,17 +1,24 @@
 
-const _         = require('lodash')
-const express   = require('express')
-const { createSVGWindow } = require('svgdom')
+import _         from 'lodash'
+import express   from 'express'
+import svgJS     from 'svg.js'
+import { createSVGWindow } from 'svgdom'
 
-const {Algorithm, Polyline}   = require('../')
-const symbolModel   = require('../data-models/symbol')
+import {Algorithm, PolylineAlgorithm,Polyline} from './../index.js'
+const symbolModel   = {
+    "polylines": [],
+    "circles": [],
+    "connectCords": [],
+    "width": 0,
+    "height": 0
+};
+
 const app           = express();
-const port          = 3000;
-
+const port          = 3300;
 
 app.get('/', (req, res) => {
     const window    = createSVGWindow();
-    const SVG       = require('svg.js')(window);
+    const SVG       = svgJS(window);
     const document  = window.document
 
     var symbols = []

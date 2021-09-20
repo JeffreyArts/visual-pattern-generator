@@ -1,4 +1,4 @@
-const _ = require("lodash");
+import _ from "lodash";
 
 // First index represents Y column
 // Second index represents X column
@@ -45,4 +45,4 @@ const Grid = {
     }
 };
 
-module.exports = Grid;
+export default Grid;

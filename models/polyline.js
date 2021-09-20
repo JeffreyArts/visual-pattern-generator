@@ -1,5 +1,5 @@
-const _ = require("lodash")
-const Grid = require("./grid")
+import _ from       "lodash";
+import Grid from    "./grid.js";
 
 const Polyline = {
     getLinesAtPoint: (x,y,polylines) => {
@@ -302,4 +302,5 @@ const Polyline = {
         return map;
     }
 }
-module.exports = Polyline;
+
+export default Polyline;
