@@ -1,9 +1,9 @@
 {
   "name": "visual-pattern-generator",
-  "version": "1.2.1",
+  "version": "1.2.4",
   "description": "A system to generate illustrative (vector based) patterns",
   "type": "module",
-  "main": "visualPatternGenerator",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +25,6 @@
   "dependencies": {
     "lodash": "^4.17.20",
     "seedrandom": "^3.0.5",
-    "shuffle-seed": "^1.1.6"
+    "@sjeffff/shuffle-seed": "^1.1.6"
   }
 }

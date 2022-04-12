@@ -1,5 +1,5 @@
 import _            from "lodash";
-import shuffleSeed  from "shuffle-seed";
+import shuffleSeed  from "@sjeffff/shuffle-seed";
 import seedrandom   from "seedrandom";
 
 import Grid         from "./../models/grid.js";
@@ -228,7 +228,7 @@ export default (input) => {
         canvasGrid.length = Math.ceil(canvasGrid.length/2);
     }
 
-    
+
     if (mirrorX == 1){
         _.each(canvasGrid, row => {
             row.length = Math.ceil(row.length/2)
