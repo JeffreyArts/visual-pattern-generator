@@ -174,7 +174,7 @@ export default (input) => {
     const width = input.width;
     const height = input.height;
     const symbols = input.symbols;
-    const seed = input.seed;
+    const seed = input.seed.toString();
 
     const startPoint        = input.algorithm.startPoint || {x:0, y:0};
     const mirrorX           = input.algorithm.mirrorX || 0;

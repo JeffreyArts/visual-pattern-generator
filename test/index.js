@@ -4,7 +4,7 @@ import express   from 'express'
 import svgJS     from 'svg.js'
 import { createSVGWindow } from 'svgdom'
 
-import {Algorithm, PolylineAlgorithm,Polyline} from './../index.js'
+import { Algorithm, Polyline } from './../index.js'
 const symbolModel   = {
     "polylines": [],
     "circles": [],
