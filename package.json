@@ -1,6 +1,6 @@
 {
   "name": "visual-pattern-generator",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A system to generate illustrative (vector based) patterns",
   "type": "module",
   "main": "index.js",
@@ -23,8 +23,8 @@
     "svgdom": "^0.1.8"
   },
   "dependencies": {
+    "@sjeffff/shuffle-seed": "^1.1.6",
     "lodash": "^4.17.20",
-    "seedrandom": "^3.0.5",
-    "@sjeffff/shuffle-seed": "^1.1.6"
+    "seedrandom": "^3.0.5"
   }
 }
