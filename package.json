@@ -1,6 +1,6 @@
 {
   "name": "visual-pattern-generator",
-  "version": "1.2.5",
+  "version": "1.2.7",
   "description": "A system to generate illustrative (vector based) patterns",
   "type": "module",
   "main": "index.js",
@@ -16,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/JeffreyArts/visual-pattern-generator/issues"
   },
+  "types": "./types.d.ts",
   "homepage": "https://github.com/JeffreyArts/visual-pattern-generator#readme",
   "devDependencies": {
     "express": "^4.17.1",
