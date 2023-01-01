@@ -155,6 +155,10 @@ The following code console.log's the ascii representation of the algorithm outpu
 Obviously you could use the same `result.polylines` object to output a SVG. Below you can find an example code using svgJS to do exactly that.
 
 ```
+
+const canvas = SVG(document.documentElement)
+const result = Algorithm(input);
+    
 result.polylines.forEach(polyline => {
   var polyline = polyline.map(cord => {
     // This, plus enlarging viewbox prevents lines to be cut off from edges
