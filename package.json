@@ -1,6 +1,6 @@
 {
   "name": "visual-pattern-generator",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "A system to generate illustrative (vector based) patterns",
   "type": "module",
   "main": "index.js",
