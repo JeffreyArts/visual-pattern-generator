@@ -57,14 +57,13 @@ export interface PolylineModel {
 
 export function PolylineAlgorithmModel(
     input: {
+        seed: string,
         width: number,
         height: number,
         symbols: [{
             polylines: [[{x:number, y:number},{ x:number, y:number}]],
             connectCords: [{x:number, y:number},{ x:number, y:number}]
         }],
-        width: number,
-        height: number,
         algorithm: {
             startPoint: {x: number, y:number},
             mirrorX: 0 | 1 | 2,
